@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package myex;
+
+service MyExService {
+    rpc record_cab_location(CabLocationRequest) returns (CabLocationResponse);
+    rpc get_cab(GetCabRequest) returns (GetCabResponse);
+}
+
+//A request to record location of a Cab
+message CabLocationRequest {
+    string name = 1;
+    Location location = 2;
+}
+//A response for cab location request
+message CabLocationResponse{
+    bool accepted = 1;
+}
+
+//A request to return cabs at given request
+message GetCabRequest{
+    Location location = 1;
+}
+//A response to get cab location
+message GetCabResponse{
+    repeated Cab cabs = 1;
+}
+//message that the cab location request passes to the server
+message Cab{
+    string name =1;
+    Location location = 2;
+
+}
+
+//Message with the location of cab
+message Location {
+    float latitude = 1;
+    float longititude = 2;
+}
